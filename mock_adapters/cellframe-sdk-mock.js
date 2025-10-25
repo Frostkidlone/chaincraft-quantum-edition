@@ -57,11 +57,11 @@ export function getBalance(address) {
 }
 
 // --- Default Export (for Vite/Vercel compatibility) ---
-export default {
+const cellframe = {
   connectWallet,
   mintNFT,
-  sendMessage,
   sendTip,
   getBalance,
 };
 
+export default cellframe;
