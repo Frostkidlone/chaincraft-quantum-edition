@@ -1,4 +1,9 @@
-// Mock Cellframe SDK adapter for local demos.
+export default {
+  connectWallet,
+  mintNFT,
+  getWalletBalance,
+  sendMessage
+};// Mock Cellframe SDK adapter for local demos.
 // Replace with real Cellframe SDK calls when available.
 module.exports = {
   init: async function initCellframe() {
