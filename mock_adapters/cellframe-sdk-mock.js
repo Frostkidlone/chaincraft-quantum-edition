@@ -1,62 +1,38 @@
-/**
- * ChainCraft Quantum Edition
- * Mock Cellframe SDK Adapter — used for hackathon/demo builds
- * Simulates quantum-safe key handling, NFT minting, and wallet ops.
- */
+// mock_adapters/cellframe-sdk-mock.js
 
-console.log("✅ Cellframe SDK Mock loaded — running in demo mode.");
-
-// --- Mock Wallet Connection ---
-export function connectWallet() {
-  console.log("🔗 Mock wallet connected!");
+// --- Mock Functions ---
+async function connectWallet() {
   return {
-    address: "0x" + Math.random().toString(16).substr(2, 8).toUpperCase(),
-    chain: "Cellframe Quantum Mocknet",
-    balance: (Math.random() * 10).toFixed(3) + " MOCK",
+    address: "0xFAKE_WALLET_123456789",
+    network: "Cellframe Quantum Testnet",
+    balance: "1000 CRAFT",
   };
 }
 
-// --- Mock NFT Minting ---
-export function mintNFT(metadata) {
-  const tokenId = Math.floor(Math.random() * 9999);
-  console.log("🎨 Minting mock NFT:", metadata);
+async function mintNFT(metadata) {
   return {
-    tokenId,
-    txHash: "0xMOCKTX_" + Math.random().toString(16).substr(2, 10),
+    success: true,
+    txHash: "0xFAKE_TX_HASH_12345",
+    tokenId: Math.floor(Math.random() * 10000),
     metadata,
-    status: "success",
   };
 }
 
-// --- Mock Messaging / XMTP Simulation ---
-export function sendMessage(to, message) {
-  console.log(`💬 Mock message sent to ${to}: "${message}"`);
+async function sendTip(to, amount) {
   return {
-    to,
-    message,
-    timestamp: new Date().toISOString(),
+    success: true,
+    message: `Sent ${amount} CRAFT to ${to}`,
   };
 }
 
-// --- Mock Tip (ERC-20 style transfer) ---
-export function sendTip(to, amount) {
-  console.log(`💸 Sent ${amount} MOCK tokens to ${to}`);
+async function getBalance(address) {
   return {
-    to,
-    amount,
-    txHash: "0xMOCKTX_" + Math.random().toString(16).substr(2, 8),
-    status: "confirmed",
+    address,
+    balance: "999.5 CRAFT",
   };
 }
 
-// --- Mock Balance Fetch ---
-export function getBalance(address) {
-  const balance = (Math.random() * 5).toFixed(2);
-  console.log(`💰 Balance for ${address}: ${balance} MOCK`);
-  return { address, balance };
-}
-
-// --- Default Export (for Vite/Vercel compatibility) ---
+// --- Single Export ---
 const cellframe = {
   connectWallet,
   mintNFT,
